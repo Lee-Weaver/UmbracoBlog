@@ -1,0 +1,21 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.Blog>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = "Master.cshtml";
+}
+
+ @{
+            	var selection = Umbraco.Content(Guid.Parse("5e21ba0f-ad7a-49e5-b5d3-bfc557232c05"))
+                .ChildrenOfType("blogItem")
+                .Where(x => x.IsVisible())
+                .OrderByDescending(x => x.CreateDate);
+            }
+            <div class="row">
+            	@foreach (var item in selection)
+            	{
+            		<div class="col-md-4">
+					    <a href="@item.Url()" class="featured-link"><div class="thumbnail-blog">
+					        	<h5>@item.Value("title")</h5>
+					        </div></a>
+                    </div>	}				        

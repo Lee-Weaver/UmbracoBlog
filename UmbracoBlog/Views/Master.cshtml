@@ -1,0 +1,26 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@Model.Value("tabDisplay", fallback: Fallback.ToAncestors)</title>
+    <link rel="stylesheet" href='@Url.Content("~/css/style.css")' />
+</head>
+<body>
+    @await Html.PartialAsync("Navigation")
+    <div class="title">
+        <h1>@Model.Value("title", fallback: Fallback.ToAncestors)</h1>
+        <p>@Model.Value("subtitle", fallback: Fallback.ToAncestors)</p>
+    </div>
+    
+    @RenderBody()
+
+    <footer>@Model.Value("footerText", fallback: Fallback.ToAncestors)</footer>
+</body>
+</html>
